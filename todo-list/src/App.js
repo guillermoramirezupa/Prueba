@@ -46,8 +46,8 @@ function About() {
   return <h2>About</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function Tasks() {
+  return <h2>Tasks</h2>;
 }
 /*
 function People(name,height,mass,hair_color,skin_color,eye_color,birth_year,gender,homeworld,films) {
