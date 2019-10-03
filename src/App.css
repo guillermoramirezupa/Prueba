@@ -1,22 +1,58 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #09d3ac;
+
+.Tasks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NavigationBar {
+  background-color: #3CB371;
+  color : black;
+  align-items: center;
+  
+}
+
+
+
+.Home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.About {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  margin-top: 25px;
+}
+.pagination span {
+cursor: pointer;
+color: black;
+float: left;
+padding: 8px 16px;
+text-decoration: none;
+transition: background-color .3s;
+border: 1px solid #ddd;
+}
+
+.pagination span.active {
+background-color: #8FBC8F;
+color: white;
+border: 1px solid #8FBC8F;
 }
