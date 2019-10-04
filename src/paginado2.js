@@ -49,7 +49,7 @@ export default function StickyHeadTable() {
 
   const handleChangePage = (event, newPage) => {
     axios.get('/ws/rest/tasks/paginated', 
-    { params: { PageSize: rowsPerPage }})
+    { params: { PageSize: rowsPerPage, page: page+1 }})
     .then(res => {
     setRows(res.data.tasks);
     })

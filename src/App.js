@@ -4,7 +4,9 @@ import Axiostest from './Axiostest.js';
 import { BrowserRouter as Router, Switch, Route ,Link} from 'react-router-dom';
 import moment from 'moment';
 import StickyHeadTable from './paginado2';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 
 function App() {
@@ -84,8 +86,29 @@ function Tasks() {
   return (
     <div className = "Tasks">
     <a>Tasks</a>
+    CrearTarea();
     </div>
   );
+}
+
+function FormularioEntrada (){
+return (
+  <TextField
+  id="standard-bare"
+  defaultValue="Bare"
+  margin="normal"
+  inputProps={{ 'aria-label': 'bare' }}
+/>
+);
+
+function CrearTarea(){
+  return(
+    <Button onclick="FormularioEntrada">
+        Crear Tarea
+      </Button>
+  );
+
+}
 }
 
 /*
