@@ -9,26 +9,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import axios from 'axios';
 import TableRow from '@material-ui/core/TableRow';
 
+
 const columns = [
   { id: 'name', label: 'Name', minWidth: 170 },
-];
-
-function createData(name) {
-  return { name };
-}
-const rows = [
-  createData('1'),
-  createData('2'),
-  createData('3'),
-  createData('4'),
-  createData('5'),
-  createData('6'),
-  createData('7'),
-  createData('8'),
-  createData('9'),
-  createData('10'),
-  createData('11'),
-  createData('12'),
 ];
 
 const useStyles = makeStyles({
@@ -44,13 +27,47 @@ const useStyles = makeStyles({
 export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(2);
+  const [rows,setRows] = React.useState([]);
+  const [count,setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    getPaginatedTasks();
+  },[]);
+
+  const getPaginatedTasks = () => {
+    axios.get('/ws/rest/tasks/paginated', 
+    { params: { PageSize: rowsPerPage, page: page +1 }})
+    .then(res => {
+    setRows(res.data.tasks);
+    setCount(res.data.count);
+    })
+    .catch(err => {
+    console.log(err);
+    });    
+  }
 
   const handleChangePage = (event, newPage) => {
+    axios.get('/ws/rest/tasks/paginated', 
+    { params: { PageSize: rowsPerPage }})
+    .then(res => {
+    setRows(res.data.tasks);
+    })
+    .catch(err => {
+    console.log(err);
+    });   
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = event => {
+    axios.get('/ws/rest/tasks/paginated', 
+    { params: { PageSize: rowsPerPage}})
+    .then(res => {
+    setRows(res.data.tasks);
+    })
+    .catch(err => {
+    console.log(err);
+    });   
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -73,7 +90,7 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
+            {rows.map(row => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map(column => {
@@ -91,9 +108,9 @@ export default function StickyHeadTable() {
         </Table>
       </div>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[2, 5, 10]}
         component="div"
-        count={rows.length}
+        count={count}
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
@@ -108,3 +125,4 @@ export default function StickyHeadTable() {
     </Paper>
   );
 }
+

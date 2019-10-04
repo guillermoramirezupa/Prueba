@@ -41,10 +41,5 @@ class Tasks extends React.Component {
             </div>
               );
 }
-
-
-
-
-
 }
 export default Tasks;

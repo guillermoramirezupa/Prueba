@@ -6,12 +6,12 @@ import moment from 'moment';
 import StickyHeadTable from './paginado2';
 
 
+
 function App() {
   return (
     <div className="Blog">
          <Header/>
          <NavigationBar/>
-        <StickyHeadTable/>
   </div>
     );
 }
@@ -30,7 +30,7 @@ function Header (){
 
 
 function NavigationBar() {
-  return (
+  return (  
     <Router>
       <div className="NavigationBar">
         <nav>
@@ -52,7 +52,8 @@ function NavigationBar() {
             <About />
           </Route>
           <Route path="/tasks">
-            <Axiostest/>
+            <center><h1>Tasks</h1></center>
+            <StickyHeadTable/>
           </Route>
           <Route path="/">
             <Home />
@@ -74,7 +75,7 @@ function Home() {
 function About() {
   return (
     <div className = "About">
-      <a>About</a>
+      <h1>About</h1>
     </div>
       );
 }
@@ -83,12 +84,41 @@ function Tasks() {
   return (
     <div className = "Tasks">
     <a>Tasks</a>
-    <Tasks/>
     </div>
   );
 }
 
 /*
+function Actions (){
+  return(
+    <AgregarTarea/>
+    <BorrarTarea/>
+    <EditarTarea/>
+  );
+}
+
+function AgregarTarea(){
+  return(
+    <Fab color="primary" size = "small" aria-label="add" className={classes.fab}>
+    <AddIcon />
+    </Fab>
+  );
+}
+
+function BorrarTarea(){
+  return(
+    <Fab disabled size = "small" aria-label="delete" className={classes.fab}>
+        <DeleteIcon />
+    </Fab>
+
+  );
+}
+function EditarTarea(){
+    <Fab color="secondary" size = "small" aria-label="edit" className={classes.fab}>
+        <EditIcon />
+    </Fab>
+}
+
 function People(name,height,mass,hair_color,skin_color,eye_color,birth_year,gender,homeworld,films) {
   return(
   this.name = name;
